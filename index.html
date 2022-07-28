@@ -1,51 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Shopping Cart</title>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
- <header class="intro">
- </header>
-  
-      
- <main>
-<div class="shopping-cart-wrapper">
-  <table class="table is-fullwidth shopping-cart">
-    <thead>
-      <tr>
-        <th><abbr title="Position"></abbr></th>
-        <th></th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
-        <th></th>
-      </tr>
-    </thead>
-  </table>
-  <div class="totals">
-    <div class="totals-item">
-      <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">MXP 0</div>
-    </div>
-    <div class="totals-item">
-      <label>Tax (16%)</label>
-      <div class="totals-value" id="cart-tax">MXP 0</div>
-    </div>
-    <div class="totals-item">
-      <label>Shipping</label>
-      <div class="totals-value" id="cart-shipping">MXP 0</div>
-    </div>
-    <div class="totals-item totals-item-total">
-      <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">MXP 0</div>
-    </div>
-  </div>
-
-</div>
- </main>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-    <script  src="./js/entrega2.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="complete">
+            <div class="form">
+                <label>Name: <input id="name" type="text"></label>
+                <label>Email: <input id="email" type="text"></label>
+                <span id="error"></span>
+                <button onclick="getData()">Submit</button>
+                <button onclick="publish()">Count</button>
+            </div>
+        </div>
+    <script  src="../js/arrays.js"></script>
+    </body>
 </html>

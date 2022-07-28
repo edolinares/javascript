@@ -1,0 +1,45 @@
+/* GENERALS */
+html{
+    font-size: 62.5%; 
+    --ligthcolor: #D9D9DC;
+    --midcolor: #787879;
+    --accentcolor: #1176AD;
+   *{
+       padding: 0;
+       margin: 0;
+       font-family: 'Roboto', sans-serif;
+       box-sizing: border-box;
+       text-decoration: none;
+   }
+   background-color: white;
+   body{
+       h1, h2, h3, h4, h5, h6{
+           text-align: center;
+           margin: 1rem;
+       }
+       h1{
+           color: var(--accentcolor);
+           font-size: 3rem;
+       }
+       h2{
+           font-size: 2.4rem;
+       }
+       h3{
+           font-size: 2rem;
+           columns: var(--midcolor);
+       }
+       h4{
+           color: var(--accentcolor);
+           font-size: 1.5rem;  
+       }
+       p{
+           color: var(--midcolor);
+           font-size: 1.8rem;
+           text-align: justify;
+           margin: 2rem;
+       }
+       input{
+           font-size: 1.6rem;
+       }
+   }
+}
