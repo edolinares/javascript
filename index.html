@@ -14,14 +14,20 @@
                 <form class="inputs" id="myform">
                     <input id="name" type="text" class="un " placeholder="Username">
                     <input id="age" type="number" class="age" placeholder="Age">
-                    <span id="error" align="center"></span>
+                    <span id="error" ></span>
                 </form>
                 <div class="buttons">
                     <button class="submit" onclick="getData()">Submit</button>
                     <button class="submit" onclick="publish()">Count</button>
-                    <button class="submit" onclick="show()">Show in console</button>
+                    <button class="submit" onclick="show()">Show Table</button>
                 </div>
+                <table id="tableArray">
+                </table>
             </div>
+            <div class="results">
+                <span id="average"></span>
+                <div id="table"></div>
+          </div>
         </div>
     <script  src="./js/arrays.js"></script>
     </body>
