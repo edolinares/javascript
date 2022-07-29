@@ -11,6 +11,7 @@ function getData() {
         ages.push(age);
         console.log(names.length);
     }
+    document.getElementById('myform').reset();
 }
 
 function publish(){
