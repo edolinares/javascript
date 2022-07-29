@@ -10,7 +10,6 @@ function getData() {
     }
     document.getElementById('myform').reset();
     document.getElementById('name').focus();
-    $("#tableArray").empty();
 }
 
 function publish(){
