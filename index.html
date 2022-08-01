@@ -14,7 +14,14 @@
                 <form class="inputs" id="myform">
                     <input id="name" type="text" class="un " placeholder="Username">
                     <input id="age" type="number" class="age" placeholder="Age">
-                    <span id="error" ></span>
+                    <div class="rad">
+                        <input  type="radio" value="man" name="gender"><label>Man</label>
+                        <input  type="radio" value="woman" name="gender"><label>Woman</label>
+                    </div>
+                    <div class="errormsj">
+                        <span id="error" ></span>
+                    </div>
+                    
                 </form>
                 <div class="buttons">
                     <button class="submit" onclick="getData()">Submit</button>
@@ -28,7 +35,11 @@
                 <span id="average"></span>
                 <div id="table"></div>
           </div>
+          <div>
+            <canvas id="myChart"></canvas>
+          </div>
         </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script  src="./js/arrays.js"></script>
     </body>
 </html>
