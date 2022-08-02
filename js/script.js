@@ -69,13 +69,7 @@ function getData() {
 }
 
 function tableupdate(){
-    if(index == 0){
-        
-        tableaddrow();
-    }
-    else{
-        tableaddrow();
-    }
+    tableaddrow();
     myTable.appendChild(table);
 }
 
@@ -140,11 +134,6 @@ function graphupdate(){
     myChart.config.data.datasets[0].data[0] = m;
     myChart.config.data.datasets[0].data[1] = f;
     myChart.update();
-}
-
-function deleterow(row){
-    document.getElementById("myTable").deleterow(row);
-    var removed = database.splice(row,1);
 }
 
 let removeRow = (oButton) => {
