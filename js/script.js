@@ -41,7 +41,7 @@ input.addEventListener("keypress", function(event) {
 
 // FUNCTIONS
 function getData() { 
-    index++;
+
     const name = document.getElementById('name').value;
     const age = document.getElementById('age').valueAsNumber;
     let gender = "x"
@@ -52,16 +52,20 @@ function getData() {
        break;
      }
    }
-    const error = document.getElementById('error');
-    error.innerHTML = (!name || !age) ? 'Please fill all the form.' : '';
-    if (name && age) {
-        database.push({name,age,gender});
-    }
-   document.getElementById('myform').reset();
-   document.getElementById('name').focus();
-   tableupdate();
-   graphupdate();  
-   average();
+   const error = document.getElementById('error');
+   if(!name || !age){
+    error.innerHTML = 'Please fill all the form.';
+   }
+   else{
+      error.innerHTML = '';
+      index++;
+      database.push({name,age,gender});
+      document.getElementById('myform').reset();
+      document.getElementById('name').focus();
+      tableupdate();
+      graphupdate();  
+      average();
+   }
 }
 
 function tableupdate(){
