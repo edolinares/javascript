@@ -38,6 +38,7 @@ input.addEventListener("keypress", function(event) {
   }
 });
 
+
 // FUNCTIONS
 function getData() { 
     index++;
@@ -84,11 +85,18 @@ function tableaddrow(){
         cell.appendChild(textNode);
         row.appendChild(cell);
     })
+    let cell = document.createElement('td');
+    let span = document.createElement('span');
+    span.onclick(function(){deleterow(this);});
+    let deleteme = document.createTextNode('X');
+    span.appendChild(deleteme);
+    cell.appendChild(span);
+    row.appendChild(cell);
     table.appendChild(row);
 }
 
 function tableheader(){
-    let headers = ['Name', 'Age','Sex'];
+    let headers = ['Name', 'Age','Sex','Del'];
     let headerRow = document.createElement('tr');
     headers.forEach(headerText => {
         let header = document.createElement('th');
@@ -127,4 +135,10 @@ function graphupdate(){
     myChart.config.data.datasets[0].data[0] = m;
     myChart.config.data.datasets[0].data[1] = f;
     myChart.update();
+}
+
+function deleterow(row){
+    document.getElementById("myTable").deleterow(row);
+    var removed = database.splice(row,1);
+
 }
