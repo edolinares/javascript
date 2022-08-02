@@ -44,7 +44,7 @@ function getData() {
 
     const name = document.getElementById('name').value;
     const age = document.getElementById('age').valueAsNumber;
-    let gender = "x"
+    let gender = 1;
     var genders = document.getElementsByName("gender");
     for (var i = 0, length = genders.length; i < length; i++) {
      if (genders[i].checked) {
@@ -53,7 +53,7 @@ function getData() {
      }
    }
    const error = document.getElementById('error');
-   if(!name || !age){
+   if(!name || !age || gender == 1){
     error.innerHTML = 'Please fill all the form.';
    }
    else{
