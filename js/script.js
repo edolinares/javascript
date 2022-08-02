@@ -3,6 +3,7 @@ let database = [];
 let index = -1
 let myTable = document.querySelector('#table');
 let table = document.createElement('table');
+table.setAttribute('id', 'empTable');
 var input = document.getElementById("age");
 let avg = 0;
 let m = 0;
@@ -38,7 +39,6 @@ input.addEventListener("keypress", function(event) {
   }
 });
 
-
 // FUNCTIONS
 function getData() { 
     index++;
@@ -60,10 +60,8 @@ function getData() {
    document.getElementById('myform').reset();
    document.getElementById('name').focus();
    tableupdate();
-   average();
-   const avg = document.getElementById('average');
-   avg.innerHTML = 'The average Age is: '+average()+'  ';
    graphupdate();  
+   average();
 }
 
 function tableupdate(){
@@ -87,10 +85,12 @@ function tableaddrow(){
     })
     let cell = document.createElement('td');
     let span = document.createElement('span');
-    span.onclick(function(){deleterow(this);});
-    let deleteme = document.createTextNode('X');
-    span.appendChild(deleteme);
-    cell.appendChild(span);
+    let button = document.createElement('input');
+    button.setAttribute('type', 'button');
+    button.setAttribute('value', 'Remove');
+    button.setAttribute('class', 'buttonX');
+    button.setAttribute('onclick', 'removeRow(this)');
+    cell.appendChild(button);
     row.appendChild(cell);
     table.appendChild(row);
 }
@@ -127,7 +127,8 @@ function average(){
     }
     avg = avg / database.length;
     avg = avg.toFixed(2);
-    return avg;
+    const avg2 = document.getElementById('average');
+    avg2.innerHTML = 'The average Age is: '+avg+'  ';
 }
 
 function graphupdate(){
@@ -140,5 +141,14 @@ function graphupdate(){
 function deleterow(row){
     document.getElementById("myTable").deleterow(row);
     var removed = database.splice(row,1);
+}
 
+let removeRow = (oButton) => {
+    let empTab = document.getElementById('empTable');
+    empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); 
+    row = oButton.parentNode.parentNode.rowIndex;
+    var removed = database.splice(row,1);
+    index--;
+    graphupdate();
+    average();
 }
