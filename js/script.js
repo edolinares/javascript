@@ -66,7 +66,7 @@ function getData() {
 
 function tableupdate(){
     if(index == 0){
-        tableheader();
+        
         tableaddrow();
     }
     else{

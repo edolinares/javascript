@@ -178,9 +178,6 @@ table{
     }
 }
 
-
-
-/* CSS */
 .buttonX {
   appearance: none;
   background-color: #FAFBFC;
@@ -191,18 +188,7 @@ table{
   color: #24292E;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 1.2em;
-  font-weight: 500;
-  line-height: 20px;
-  list-style: none;
   padding: 3px 16px;
   position: relative;
-  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  white-space: nowrap;
-  word-wrap: break-word;
 }
