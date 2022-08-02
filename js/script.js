@@ -29,7 +29,7 @@ const labels = [
     document.getElementById('myChart'),
     config
   );
-  
+
 //LISTENERS 
 input.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
@@ -39,7 +39,7 @@ input.addEventListener("keypress", function(event) {
 });
 
 // FUNCTIONS
-function getData() {
+function getData() { 
     index++;
     const name = document.getElementById('name').value;
     const age = document.getElementById('age').valueAsNumber;
@@ -55,7 +55,6 @@ function getData() {
     error.innerHTML = (!name || !age) ? 'Please fill all the form.' : '';
     if (name && age) {
         database.push({name,age,gender});
-        console.log(database.length);
     }
    document.getElementById('myform').reset();
    document.getElementById('name').focus();
@@ -100,7 +99,6 @@ function tableheader(){
     table.appendChild(headerRow);
 }
 
-
 function generetotals(){
     m = 0;
     f = 0;
@@ -108,11 +106,10 @@ function generetotals(){
         if(database[i].gender == "man"){ 
             m += 1;
         } 
-        else {
+        else { 
             f += 1;
         }
     }
-    console.log("male: "+m+" female: "+f);
 }
 
 function average(){
@@ -122,7 +119,6 @@ function average(){
     }
     avg = avg / database.length;
     avg = avg.toFixed(2);
-    console.log("Average of ages: "+avg);
     return avg;
 }
 
@@ -132,161 +128,3 @@ function graphupdate(){
     myChart.config.data.datasets[0].data[1] = f;
     myChart.update();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//unused functions
-
-function generategraph(){
-    generetotals();
-
-    
-
-}
-
-function publish(){
-    alert('Se crearon '+database.length+' registros');
-}
-
-function show(){
-    for (let i = 0; i < database.length; i++) {
-        console.log("Name: "+database[i]);
-    }
-    generatetable();
-    generategraph();
-}
-
-function generatetablex(){
-    let myTable = document.querySelector('#table');
-    let table = document.createElement('table');
-        let row = document.createElement('tr');
-        Object.values(database[items]).forEach(text => {
-            let cell = document.createElement('td');
-            let textNode = document.createTextNode(text);
-            cell.appendChild(textNode);
-            row.appendChild(cell);
-        })
-        table.appendChild(row);
-    myTable.appendChild(table);
-}
-// let newtable = 0;
-//test
-function test(){
-    average();
-    const avg = document.getElementById('average');
-    avg.innerHTML = 'The average Age is: '+average()+'  ';
-    
-    // Inicia la creacion de la tabla
-    let myTable = document.querySelector('#table');
-    let headers = ['Name', 'Age','Sex'];
-    let table = document.createElement('table');
-    let headerRow = document.createElement('tr');
-    if (newtable == 1){
-
-    }
-    else {
-        headers.forEach(headerText => {
-            let header = document.createElement('th');
-            let textNode = document.createTextNode(headerText);
-            header.appendChild(textNode);
-            headerRow.appendChild(header);
-            newtable = 1;
-        });
-        table.appendChild(headerRow);
-        database.forEach(emp => {
-            let row = document.createElement('tr');
-            Object.values(emp).forEach(text => {
-                let cell = document.createElement('td');
-                let textNode = document.createTextNode(text);
-                cell.appendChild(textNode);
-                row.appendChild(cell);
-            })
-            table.appendChild(row);
-        });
-        myTable.appendChild(table);
-    }
-}
-function generatetable(){
-    average();
-    const avg = document.getElementById('average');
-    avg.innerHTML = 'The average Age is: '+average()+'  ';
-
-    // Inicia la creacion de la tabla
-    let myTable = document.querySelector('#table');
-    let headers = ['Name', 'Age','Sex'];
-    let table = document.createElement('table');
-    let headerRow = document.createElement('tr');
-    headers.forEach(headerText => {
-        let header = document.createElement('th');
-        let textNode = document.createTextNode(headerText);
-        header.appendChild(textNode);
-        headerRow.appendChild(header);
-    });
-    table.appendChild(headerRow);
-    database.forEach(emp => {
-        let row = document.createElement('tr');
-        Object.values(emp).forEach(text => {
-            let cell = document.createElement('td');
-            let textNode = document.createTextNode(text);
-            cell.appendChild(textNode);
-            row.appendChild(cell);
-        })
-        table.appendChild(row);
-    });
-    myTable.appendChild(table);
-
-}
-
-
-
-
-
-
-
-
