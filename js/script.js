@@ -138,9 +138,11 @@ function graphupdate(){
 
 let removeRow = (oButton) => {
     let empTab = document.getElementById('empTable');
-    empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); 
     row = oButton.parentNode.parentNode.rowIndex;
+    empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); 
+    row--;
     var removed = database.splice(row,1);
+    console.log(removed);
     index--;
     graphupdate();
     average();
