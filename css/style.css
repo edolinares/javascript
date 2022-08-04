@@ -160,6 +160,41 @@ span {
   margin-top: 13px;
 }
 
+.buttons .buttons-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.buttons .buttons-2 .submit-2 {
+  text-align: justify;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  border-radius: 5em;
+  color: #787879;
+  background: var(--ligthcolor);
+  border: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 13px;
+  -webkit-box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+  margin-top: 13px;
+}
+
 @media (max-width: 600px) {
   .main {
     border-radius: 0px;

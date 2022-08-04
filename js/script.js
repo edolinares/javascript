@@ -1,5 +1,6 @@
 // GLOBAL VARIABLES
 let database = [];
+let numbersAvr = [];
 let index = -1
 let myTable = document.querySelector('#table');
 let table = document.createElement('table');
@@ -62,20 +63,20 @@ function getData() {
       database.push({name,age,gender});
       document.getElementById('myform').reset();
       document.getElementById('name').focus();
-      tableupdate();
+      tableaddrow(index);
+      generetotals();
       graphupdate();  
-      average();
+      numbersAvr = [];
+      for (let i = 0; i < database.length; i++){
+        numbersAvr.push(database[i].age);
+      }
+      average(numbersAvr);
    }
 }
 
-function tableupdate(){
-    tableaddrow();
-    myTable.appendChild(table);
-}
-
-function tableaddrow(){
+function tableaddrow(id){
     let row = document.createElement('tr');
-    Object.values(database[index]).forEach(text => {
+    Object.values(database[id]).forEach(text => {
         let cell = document.createElement('td');
         let textNode = document.createTextNode(text);
         cell.appendChild(textNode);
@@ -91,6 +92,8 @@ function tableaddrow(){
     cell.appendChild(button);
     row.appendChild(cell);
     table.appendChild(row);
+    //agregado
+    myTable.appendChild(table);
 }
 
 function tableheader(){
@@ -118,19 +121,19 @@ function generetotals(){
     }
 }
 
-function average(){
+function average(numbersAvr){
+    console.log(numbersAvr);
     avg = 0;
-    for (let i = 0; i < database.length; i++) {
-        avg = avg + database[i].age;
+    for (let i = 0; i < numbersAvr.length; i++) {
+        avg = avg + numbersAvr[i];
     }
-    avg = avg / database.length;
+    avg = avg / numbersAvr.length;
     avg = avg.toFixed(2);
     const avg2 = document.getElementById('average');
     avg2.innerHTML = 'The average Age is: '+avg+'  ';
 }
 
 function graphupdate(){
-    generetotals();
     myChart.config.data.datasets[0].data[0] = m;
     myChart.config.data.datasets[0].data[1] = f;
     myChart.update();
@@ -144,6 +147,45 @@ let removeRow = (oButton) => {
     var removed = database.splice(row,1);
     console.log(removed);
     index--;
+    generetotals();
     graphupdate();
     average();
+}
+
+function tablefilter(a){
+  Cleartable();
+  generetotals();
+  if(a == "any"){
+    numbersAvr = [];
+    for (let i = 0; i < database.length; i++){
+      numbersAvr.push(database[i].age);
+    }
+    for (let j = 0; j < database.length; j++) {
+      sex = database[j].gender;
+        tableaddrow(j);
+    }
+  }
+  else{
+    
+    if (a == "man"){f = 0;}
+    if (a == "woman"){m = 0;}
+    numbersAvr = [];
+    for (let j = 0; j < database.length; j++) {
+      sex = database[j].gender;
+      if (sex == a){
+        tableaddrow(j);
+        numbersAvr.push(database[j].age);
+      }
+    }
+  }
+  average(numbersAvr);
+  graphupdate();
+}
+
+function Cleartable(){
+  let empTab = document.getElementById('empTable');
+  let rowCnt = empTab.rows.length; 
+  for (let i = rowCnt; i > 1; i--) {
+    empTab.deleteRow(i-1); 
+  }
 }

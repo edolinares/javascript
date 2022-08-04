@@ -122,7 +122,6 @@ margin-bottom: 27px;
     margin-right: 50px;
     .submit {
         cursor: pointer;
-    
         align-items: center;
         align-content: center;
         border-radius: 5em;
@@ -136,8 +135,30 @@ margin-bottom: 27px;
         font-size: 13px;
         box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
         margin-top: 13px;
-    
     }
+    .buttons-2{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-evenly;
+        .submit-2{
+            text-align:justify;
+            cursor: pointer;
+            align-items: center;
+            align-content: center;
+            border-radius: 5em;
+            color:#787879;
+            background: var(--ligthcolor);
+            border: 0;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-size: 13px;
+            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+            margin-top: 13px;
+        }
+    }
+
 }
 
 
