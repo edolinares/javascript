@@ -41,8 +41,6 @@ input.addEventListener("keypress", function(event) {
   }
 });
 
-
-
 // FUNCTIONS
 function getData() { 
 
@@ -114,7 +112,6 @@ function tableheader(){
 function generetotals(){
     m = 0;
     f = 0;
-    
     for (let i = 0; i < database.length; i++) {
         if(database[i].gender == "man"){ 
             m += 1;
@@ -153,11 +150,10 @@ let removeRow = (oButton) => {
     index--;
     generetotals();
     graphupdate();
-    average();
+    average(numbersAvr);
 }
 
 function tablefilter(a){
-  
   if (a == "man")   { filter = 1; }
   if (a == "woman") { filter = 2; }
   filterclicked();
@@ -174,7 +170,6 @@ function tablefilter(a){
     filter = 0;
   }
   else{
-
     numbersAvr = [];
     for (let j = 0; j < database.length; j++) {
       sex = database[j].gender;
@@ -185,34 +180,41 @@ function tablefilter(a){
     }
   }
   generetotals();
-
   graphupdate();
   average(numbersAvr);
 }
 
 function Cleartable(){
   let empTab = document.getElementById('empTable');
-  let rowCnt = empTab.rows.length; 
-  for (let i = rowCnt; i > 1; i--) {
-    empTab.deleteRow(i-1); 
+  if (index != -1) {
+    let rowCnt = empTab.rows.length; 
+    for (let i = rowCnt; i > 1; i--) {
+      empTab.deleteRow(i-1); 
+    }
   }
 }
 
 function filterclicked(){
   let submit2 = document.getElementsByClassName('submit-2');
-if (filter == 1){ 
-  submit2[0].style.backgroundColor = "#AECBF6";
-  submit2[1].style.backgroundColor = "#D9D9DC";
-  submit2[2].style.backgroundColor = "#D9D9DC";
-}
-if (filter == 2){ 
-  submit2[0].style.backgroundColor = "#D9D9DC";
-  submit2[1].style.backgroundColor = "#AECBF6";
-  submit2[2].style.backgroundColor = "#D9D9DC";
-}
-if (filter == 0){ 
   submit2[0].style.backgroundColor = "#D9D9DC";
   submit2[1].style.backgroundColor = "#D9D9DC";
-  submit2[2].style.backgroundColor = "#AECBF6";
+  submit2[2].style.backgroundColor = "#D9D9DC";
+  if (filter == 1){ submit2[0].style.backgroundColor = "#AECBF6"; }
+  if (filter == 2){ submit2[1].style.backgroundColor = "#AECBF6"; }
+  if (filter == 0){ submit2[2].style.backgroundColor = "#AECBF6"; }
 }
+
+function save(){
+  const jsonArr = JSON.stringify(database);
+  localStorage.setItem("array", jsonArr);
+}
+
+function reload(){
+  const str = localStorage.getItem("array");
+  database = JSON.parse(str);
+  filter = 0;
+  tablefilter("any");
+  generetotals();
+  graphupdate();
+  average(numbersAvr);
 }
