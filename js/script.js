@@ -2,6 +2,7 @@
 let database = [];
 let numbersAvr = [];
 let index = -1
+let filter = 0;
 let myTable = document.querySelector('#table');
 let table = document.createElement('table');
 table.setAttribute('id', 'empTable');
@@ -64,7 +65,7 @@ function getData() {
       document.getElementById('myform').reset();
       document.getElementById('name').focus();
       tableaddrow(index);
-      generetotals();
+      generetotals(0);
       graphupdate();  
       numbersAvr = [];
       for (let i = 0; i < database.length; i++){
@@ -111,6 +112,7 @@ function tableheader(){
 function generetotals(){
     m = 0;
     f = 0;
+    
     for (let i = 0; i < database.length; i++) {
         if(database[i].gender == "man"){ 
             m += 1;
@@ -119,6 +121,8 @@ function generetotals(){
             f += 1;
         }
     }
+    if (filter == 1) { f = 0;}
+    if (filter == 2) { m = 0;}
 }
 
 function average(numbersAvr){
@@ -152,7 +156,7 @@ let removeRow = (oButton) => {
 
 function tablefilter(a){
   Cleartable();
-  generetotals();
+  
   if(a == "any"){
     numbersAvr = [];
     for (let i = 0; i < database.length; i++){
@@ -162,11 +166,11 @@ function tablefilter(a){
       sex = database[j].gender;
         tableaddrow(j);
     }
+    filter = 0;
   }
   else{
-    
-    if (a == "man"){f = 0;}
-    if (a == "woman"){m = 0;}
+    if (a == "man")   { filter = 1; }
+    if (a == "woman") { filter = 2; }
     numbersAvr = [];
     for (let j = 0; j < database.length; j++) {
       sex = database[j].gender;
@@ -176,8 +180,9 @@ function tablefilter(a){
       }
     }
   }
-  average(numbersAvr);
+  generetotals();
   graphupdate();
+  average(numbersAvr);
 }
 
 function Cleartable(){
