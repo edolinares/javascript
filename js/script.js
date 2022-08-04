@@ -122,7 +122,6 @@ function generetotals(){
 }
 
 function average(numbersAvr){
-    console.log(numbersAvr);
     avg = 0;
     for (let i = 0; i < numbersAvr.length; i++) {
         avg = avg + numbersAvr[i];
@@ -145,7 +144,6 @@ let removeRow = (oButton) => {
     empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); 
     row--;
     var removed = database.splice(row,1);
-    console.log(removed);
     index--;
     generetotals();
     graphupdate();
