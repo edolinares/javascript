@@ -6,7 +6,7 @@ let filter = 0;
 let myTable = document.querySelector('#table');
 let table = document.createElement('table');
 table.setAttribute('id', 'empTable');
-var input = document.getElementById("age");
+let input = document.getElementById("age");
 let avg = 0;
 let m = 0;
 let f = 0;
@@ -43,16 +43,12 @@ input.addEventListener("keypress", function(event) {
 
 // FUNCTIONS
 function getData() { 
-
     const name = document.getElementById('name').value;
     const age = document.getElementById('age').valueAsNumber;
     let gender = 1;
-    var genders = document.getElementsByName("gender");
-    for (var i = 0, length = genders.length; i < length; i++) {
-     if (genders[i].checked) {
-        gender = genders[i].value;
-       break;
-     }
+    let genders = document.getElementsByName("gender");
+    for (let i = 0, length = genders.length; i < length; i++) {
+    gender = genders[i].checked ? genders[i].value : gender;
    }
    const error = document.getElementById('error');
    if(!name || !age || gender == 1){
@@ -93,7 +89,6 @@ function tableaddrow(id){
     cell.appendChild(button);
     row.appendChild(cell);
     table.appendChild(row);
-    //agregado
     myTable.appendChild(table);
 }
 
@@ -110,18 +105,13 @@ function tableheader(){
 }
 
 function generetotals(){
-    m = 0;
-    f = 0;
+    m,f = 0;
     for (let i = 0; i < database.length; i++) {
-        if(database[i].gender == "man"){ 
-            m += 1;
-        } 
-        else { 
-            f += 1;
-        }
+        if(database[i].gender == "man"){  m += 1; } 
+        else {                            f += 1; }
     }
-    if (filter == 1) { f = 0;}
-    if (filter == 2) { m = 0;}
+    f = filter == 1 ? 0 : f;
+    m = filter == 2 ? 0 : m;
 }
 
 function average(numbersAvr){
@@ -129,8 +119,7 @@ function average(numbersAvr){
     for (let i = 0; i < numbersAvr.length; i++) {
         avg = avg + numbersAvr[i];
     }
-    avg = avg / numbersAvr.length;
-    avg = avg.toFixed(2);
+    avg = (avg / numbersAvr.length).toFixed(2);
     const avg2 = document.getElementById('average');
     avg2.innerHTML = 'The average Age is: '+avg+'  ';
 }
@@ -146,7 +135,7 @@ let removeRow = (oButton) => {
     row = oButton.parentNode.parentNode.rowIndex;
     empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); 
     row--;
-    var removed = database.splice(row,1);
+    let removed = database.splice(row,1);
     index--;
     generetotals();
     graphupdate();
@@ -154,8 +143,9 @@ let removeRow = (oButton) => {
 }
 
 function tablefilter(a){
-  if (a == "man")   { filter = 1; }
-  if (a == "woman") { filter = 2; }
+  filter = a == 'any'   ? 0 : filter;
+  filter = a == "man"   ? 1 : filter;
+  filter = a == "woman" ? 2 : filter;
   filterclicked();
   Cleartable();
   if(a == "any"){
@@ -167,7 +157,6 @@ function tablefilter(a){
       sex = database[j].gender;
         tableaddrow(j);
     }
-    filter = 0;
   }
   else{
     numbersAvr = [];
@@ -199,9 +188,14 @@ function filterclicked(){
   submit2[0].style.backgroundColor = "#D9D9DC";
   submit2[1].style.backgroundColor = "#D9D9DC";
   submit2[2].style.backgroundColor = "#D9D9DC";
-  if (filter == 1){ submit2[0].style.backgroundColor = "#AECBF6"; }
-  if (filter == 2){ submit2[1].style.backgroundColor = "#AECBF6"; }
-  if (filter == 0){ submit2[2].style.backgroundColor = "#AECBF6"; }
+  switch (filter){
+    case 1: submit2[0].style.backgroundColor = "#AECBF6";
+            break;
+    case 2: submit2[1].style.backgroundColor = "#AECBF6";
+            break;
+    case 0: submit2[2].style.backgroundColor = "#AECBF6";
+            break;
+  }
 }
 
 function save(){
@@ -212,8 +206,10 @@ function save(){
 function reload(){
   const str = localStorage.getItem("array");
   database = JSON.parse(str);
+  
   filter = 0;
   tablefilter("any");
+  index = database.length-1;
   generetotals();
   graphupdate();
   average(numbersAvr);
