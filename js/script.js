@@ -47,16 +47,18 @@ function getData() {
     const age = document.getElementById('age').valueAsNumber;
     let gender = 1;
     let genders = document.getElementsByName("gender");
+    // CICLE
     for (let i = 0, length = genders.length; i < length; i++) {
     gender = genders[i].checked ? genders[i].value : gender;
    }
    const error = document.getElementById('error');
    if(!name || !age || gender == 1){
-    error.innerHTML = 'Please fill all the form.';
+    errormessage();
    }
    else{
       error.innerHTML = '';
       index++;
+      // ARRAY
       database.push({name,age,gender});
       document.getElementById('myform').reset();
       document.getElementById('name').focus();
@@ -69,11 +71,14 @@ function getData() {
       }
       average(numbersAvr);
    }
+   notificationelements();
 }
 
 function tableaddrow(id){
     let row = document.createElement('tr');
+    // FUNCIONES DE ORDEN SUPERIOR
     Object.values(database[id]).forEach(text => {
+        // DOM
         let cell = document.createElement('td');
         let textNode = document.createTextNode(text);
         cell.appendChild(textNode);
@@ -89,7 +94,6 @@ function tableaddrow(id){
     cell.appendChild(button);
     row.appendChild(cell);
     table.appendChild(row);
-    myTable.appendChild(table);
 }
 
 function tableheader(){
@@ -143,6 +147,7 @@ let removeRow = (oButton) => {
 }
 
 function tablefilter(a){
+  // ADVANCED OPERATORS
   filter = a == 'any'   ? 0 : filter;
   filter = a == "man"   ? 1 : filter;
   filter = a == "woman" ? 2 : filter;
@@ -199,18 +204,46 @@ function filterclicked(){
 }
 
 function save(){
+  // LOCAL STORAGE
   const jsonArr = JSON.stringify(database);
   localStorage.setItem("array", jsonArr);
+  savemessage();
 }
 
 function reload(){
+  // JSON
   const str = localStorage.getItem("array");
   database = JSON.parse(str);
-  
   filter = 0;
   tablefilter("any");
   index = database.length-1;
   generetotals();
   graphupdate();
   average(numbersAvr);
+}
+ // LIBRARIES
+function errormessage(){
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'THe form needs to be full to submit',
+  })
+}
+
+function savemessage(){
+  Swal.fire({
+    icon: 'success',
+    title: 'Saved',
+    text: 'Your changes are saved to local storage',
+  })
+}
+
+function notificationelements() {
+  myTable.appendChild(table);
+  Toastify({
+    text: "Se cuentan con "+database.length+" registros",
+    duration: 3000,
+    gravity: 'top',
+    position: 'left'
+}).showToast();
 }
