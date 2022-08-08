@@ -52,7 +52,7 @@ function getData() {
     gender = genders[i].checked ? genders[i].value : gender;
    }
    const error = document.getElementById('error');
-   if(!name || !age || gender == 1){
+   if(!name || !age || gender == 1 || age<0 || age >120){
     errormessage();
    }
    else{
@@ -85,7 +85,7 @@ function tableaddrow(id){
         row.appendChild(cell);
     })
     let cell = document.createElement('td');
-    let span = document.createElement('span');
+ //   let span = document.createElement('span');
     let button = document.createElement('input');
     button.setAttribute('type', 'button');
     button.setAttribute('value', 'Remove');
@@ -226,7 +226,7 @@ function errormessage(){
   Swal.fire({
     icon: 'error',
     title: 'Oops...',
-    text: 'THe form needs to be full to submit',
+    text: 'THe form needs to be correctly submited',
   })
 }
 
